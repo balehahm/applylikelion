@@ -11,19 +11,15 @@
 <% end %>
 <br>
 <div class ="post">
-
-        <% @posts.each do |post| %>
-            <p>
-                <%=post.id %>
-                <% if user_signed_in? %>
-                <%=link_to "수정", edit_post_path(post.id) %>
-                <%=link_to "삭제", post, :method => :delete %></p>
-                <% end %>
-            <p><%=post.name%> (<%=post.email%>)</p>
-            <p><%=post.content%></p>
-        <p></p>
+    <% @posts.each do |post| %>
+        <p><%=post.name%> (<%=post.email%>)</p>
+        <p><%=post.content%></p>
+        <% if user_signed_in? %>
+        <%=link_to "수정", edit_post_path(post.id) %>
+        <%=link_to "삭제", post, :method => :delete %></p>
         <% end %>
-
+        <p></p>
+    <% end %>
 </div>
 <br>
 <br>
