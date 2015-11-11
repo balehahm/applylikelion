@@ -1,2 +1,9 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<h1>Likelion Blog</h1>
+<h2>닉네임과 이메일, 비밀번호를 입력하고 내용을 추가해주세요.</h2>
+<%=form_for :post, url: posts_path, method: :post do |f| %>
+    닉네임 : <%=f.text_field :name  %><br>
+    이메일 : <%=f.text_field :email  %><br>
+    비밀번호 : <%=f.password_field :password  %><br>
+    <%=f.text_area :content  %>
+    <%=f.submit %>
+<% end %>
