@@ -7,3 +7,20 @@
     <%=f.text_area :content  %>
     <%=f.submit %>
 <% end %>
+
+<br>
+<div class ="post">
+    <% @posts.each do |post| %>
+    <div>
+        <p>
+            <%=post.id%>
+            <%=link_to "수정", edit_post_path(post.id) %>
+            <%=link_to "삭제", post, :method => :delete %></p>
+        <p><%=post.name%> (<%=post.email%>)</p>
+        <p><%=post.content%></p>
+    </div>
+    <p></p>
+    <% end %>
+</div>
+<br>
+<br>
