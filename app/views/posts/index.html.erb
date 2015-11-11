@@ -1,26 +1,29 @@
 <h1>Likelion Blog</h1>
-<h2>닉네임과 이메일, 비밀번호를 입력하고 내용을 추가해주세요.</h2>
-<%=form_for :post, url: posts_path, method: :post do |f| %>
-    닉네임 : <%=f.text_field :name  %><br>
-    이메일 : <%=f.text_field :email  %><br>
-    비밀번호 : <%=f.password_field :password  %><br>
-    <%=f.text_area :content  %>
-    <%=f.submit %>
+<% if user_signed_in? %>
+    <h2>글 작성하기</h2>
+    <%=form_for :post, url: posts_path, method: :post do |f| %>
+        닉네임 : <%=f.text_field :name   %><br>
+        이메일 : <%=f.text_field :email  %><br>
+        비밀번호 : <%=f.password_field :password  %><br>
+        <%=f.text_area :content  %>
+        <%=f.submit %>
+    <% end %>
 <% end %>
-
 <br>
 <div class ="post">
-    <% @posts.each do |post| %>
-    <div>
-        <p>
-            <%=post.id%>
-            <%=link_to "수정", edit_post_path(post.id) %>
-            <%=link_to "삭제", post, :method => :delete %></p>
-        <p><%=post.name%> (<%=post.email%>)</p>
-        <p><%=post.content%></p>
-    </div>
-    <p></p>
-    <% end %>
+
+        <% @posts.each do |post| %>
+            <p>
+                <%=post.id %>
+                <% if user_signed_in? %>
+                <%=link_to "수정", edit_post_path(post.id) %>
+                <%=link_to "삭제", post, :method => :delete %></p>
+                <% end %>
+            <p><%=post.name%> (<%=post.email%>)</p>
+            <p><%=post.content%></p>
+        <p></p>
+        <% end %>
+
 </div>
 <br>
 <br>
